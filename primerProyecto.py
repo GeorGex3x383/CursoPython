@@ -1,0 +1,5 @@
+print("Hola Mundo")
+print('Hola Mundo')
+print("Comillas \"Hola\"")
+print("Comillas 'Hola'")
+print(100)
