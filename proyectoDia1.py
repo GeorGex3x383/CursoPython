@@ -1,0 +1,2 @@
+# Proyecto para generar el nombre de una marca de cerveza con 2 preguntas
+print("El nombre de tu cerveza debería ser:\n\t\""+input("¿Cuál es tu animal favorito? ")+input("¿Cuál es tu color favorito? ")+"\"")
