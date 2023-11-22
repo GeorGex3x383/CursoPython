@@ -1,0 +1,62 @@
+#Proyecto para realizar balances en cuentas banco
+from os import system
+
+class Persona:
+    def __init__(self,nombre,apellido):
+        self.nombre = nombre
+        self.apellido = apellido
+
+class Cliente(Persona):
+    def __init__(self, nombre, apellido,numero_cuenta,balance=0):
+        super().__init__(nombre, apellido)
+        self.numero_cuenta = numero_cuenta
+        self.balance = balance
+
+    def __str__(self):
+        return f"Hola {self.nombre} {self.apellido}, tu numero de cuenta es: {self.numero_cuenta} con un balance de ${self.balance}."
+    
+    def depositar(self,deposito):
+        self.balance+=deposito
+        print(f"Se realizó un deposito de ${deposito}, tu balance es de ${self.balance}")
+        
+    def retirar(self,retiro):
+        if retiro > self.balance:
+            print("No puedes retirar mas dinero del que tienes.")
+        else:
+            self.balance-=retiro
+            print(f"Se realizó un retiro de ${retiro}, tu balance es de ${self.balance}")
+            
+def crear_cliente():
+    nombre_cliente = input("Ingrese su nombre: ")
+    apellido_cliente = input("Ingrese su apellido: ")
+    num_cuenta_cliente = input("Ingrese su numero de cuenta: ")
+    un_cliente = Cliente(nombre_cliente,apellido_cliente,num_cuenta_cliente,0)
+    return un_cliente
+
+def limpiar_pantalla():
+    system("cls")
+
+def inicio():
+    op = ''
+    limpiar_pantalla()
+    mi_cliente = crear_cliente()
+    limpiar_pantalla()
+    print(mi_cliente)
+    while op != '3':
+        print("Que opción elegiras:\n1. Depositar.\n2. Retirar.\n3. Salir.")
+        op = input("---> ")
+        limpiar_pantalla()
+        match op:
+            case '1':
+                depo = float(input("¿Cuánto dinero depositaras?  "))
+                mi_cliente.depositar(depo)
+            case '2':
+                ret = float(input("¿Cuánto dinero retirarás?  "))
+                mi_cliente.retirar(ret)
+            case '3':
+                break
+            case _:
+                print("Opción inválida, intente de nuevo.")
+    
+inicio()
+print("¡Hasta pronto!")
